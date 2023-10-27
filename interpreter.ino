@@ -66,7 +66,7 @@ void setVelocity() {
         currentVelocity = 300;
         break;
     }
-    Serial.println("Current velocity: " + String(currentVelocity));
+    Serial.println("Current velocity: " + String(codeNumber));
   } else {
     Serial.println("Invalid velocity. Minimum value: 1. Maximum value: 5.");
   }
@@ -87,7 +87,6 @@ void moveForward() {
     digitalWrite(stepPin2, LOW);
     delayMicroseconds(currentVelocity);
   }
-  Serial.println("forward");
 }
 
 void moveBackward() {
@@ -105,5 +104,4 @@ void moveBackward() {
     digitalWrite(stepPin2, LOW);
     delayMicroseconds(currentVelocity);
   }
-  Serial.println("backward");
 }
