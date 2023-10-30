@@ -5,15 +5,11 @@ const int stepsPerRevolution = 200;
 Stepper motor1(stepsPerRevolution, 2, 3);
 Stepper motor2(stepsPerRevolution, 4, 5);
 
-const int radius = 34;
-const int b = 250;
-float rightWheelSpeed;
-float leftWheelSpeed;
-
 String userInput;
 char codeLetter;
-int linear;
-int angular;
+int timeSpinning;
+int leftWheelSpeed;
+int rightWheelSpeed;
 
 int currentVelocity = 300;
 
@@ -24,60 +20,61 @@ void setup() {
 }
 
 void loop() {
-  linear = 0;
-  angular = 0;
 
-  Serial.println("Enter a code (options: v, f, b):");
+  static unsigned long tempoAnterior = 0;
+  unsigned long tempoAtual = millis();
+
+  if (tempoAtual - tempoAnterior >= 1000) {
+    // A cada segundo, imprime o tempo decorrido em segundos
+    Serial.print("Tempo decorrido: ");
+    Serial.print(tempoAtual / 1000); // Converter para segundos
+    Serial.println(" segundos");
+    
+    tempoAnterior = tempoAtual;
+  }
+  
+  timeSpinning = NULL;
+  leftWheelSpeed = NULL;
+  rightWheelSpeed = NULL;
+  
+  Serial.println("Enter a code (options: f (forward), b (backward), h (help):");
   
   while (Serial.available() == 0) {}
-
-  userInput = Serial.readString();
-
-  userInput.toUpperCase();
-
-  char *str = (char *)userInput.c_str();
-  char *token = strtok(str, ",");
   
-  if (token != NULL) {
-    codeLetter = token[0];
-    token = strtok(NULL, ",");
-    if (token != NULL) {
-      linear = atoi(token);
-      token = strtok(NULL, ",");
-      if (token != NULL) {
-        angular = atoi(token);
-      }
-    }
-  }
+  userInput = Serial.readStringUntil('\n');  // Read the input until a newline character
 
-  if (codeLetter == 'V') {
-    if (angular == 0) {
-      motor1.setSpeed(linear * 9.549);
-      motor2.setSpeed(linear * 9.549);
+  // Convert the command letter to uppercase
+  codeLetter = toupper(userInput.charAt(0));
+
+  // Parse the numbers using strtok
+  char* token = strtok((char*)userInput.c_str() + 2, ",");
+  timeSpinning = atoi(token);
+  token = strtok(NULL, ",");
+  leftWheelSpeed = atoi(token);
+  token = strtok(NULL, ",");
+  rightWheelSpeed = atoi(token);
+
+  if (codeLetter == 'F') {
+    if (timeSpinning != NULL && leftWheelSpeed != NULL && rightWheelSpeed != NULL) {
+      
     } else {
-      rightWheelSpeed = (linear / b) + ((b / (2 * radius)) * angular);
-      leftWheelSpeed = (linear / b) - ((b / (2 * radius)) * angular);
-
-      motor1.setSpeed(rightWheelSpeed * 9.549);
-      motor2.setSpeed(leftWheelSpeed * 9.549);
+      Serial.println("Invalid code. Type h to help.");
     }
-  } else if (codeLetter == 'F') {
-    for(int i = 0; i < linear; i++) {
-      for(int i = 0; i < 800; i++) {
-        motor1.step(1);
-        motor2.step(1);
-      }
-        Serial.println("step");
-    }
-  } else if (codeLetter == 'B') {
-    for(int i = 0; i < linear; i++) {
-      for(int i = 0; i < 800; i++) {
-        motor1.step(-1);
-        motor2.step(-1);
-      }
-        Serial.println("step");
-    }
-  } else {
-    Serial.println("Invalid code.");
   }
+  else if (codeLetter == 'B') {
+    
+  }
+  else if (codeLetter == 'H') {
+    Serial.println("HELP");
+    Serial.println("F - forward");
+    Serial.println("B - Backward");
+    Serial.println("Template: F,1,2,3");
+    Serial.println("1 - 1 second");
+    Serial.println("2 - left wheel speed");
+    Serial.println("3 - right wheel speed");
+    Serial.println("Possible speed values: 1, 2, 3, 4, 5");
+  } else {
+    Serial.println("Invalid code. Type h to help.");
+  }
+  
 }
