@@ -11,11 +11,9 @@ int timeSpinning;
 int leftWheelSpeed;
 int rightWheelSpeed;
 
-int currentVelocity = 300;
-
 void setup() {
-  motor1.setSpeed(500);
-  motor2.setSpeed(500);
+  motor1.setSpeed(leftWheelSpeed);
+  motor2.setSpeed(rightWheelSpeed);
   Serial.begin(9600);
 }
 
@@ -23,11 +21,19 @@ void loop() {
   prompt();
 
   if (codeLetter == 'F') {
-    forward();
+    if (leftWheelSpeed >= 1 && leftWheelSpeed <= 5 && rightWheelSpeed >= 1 && rightWheelSpeed <= 5) {
+      forward();
+    } else {
+      Serial.println("Invalid speed. Minimum value: 1. Maximum value: 5.");
+    }
   }
 
   else if (codeLetter == 'B') {
-    backward();
+    if (leftWheelSpeed >= 1 && leftWheelSpeed <= 5 && rightWheelSpeed >= 1 && rightWheelSpeed <= 5) {
+      backward();
+    } else {
+      Serial.println("Invalid speed. Minimum value: 1. Maximum value: 5.");
+    }
   }
 
   else if (codeLetter == 'H') {
@@ -63,9 +69,10 @@ void prompt() {
 void forward() {
   unsigned long startTime = millis();
   if (timeSpinning != NULL && leftWheelSpeed != NULL && rightWheelSpeed != NULL) {
+    setSpeed();
     while (millis() - startTime < timeSpinning) {
-      Serial.println("Hello, World. Forwarding.");
-      delay(1000);
+      motor1.step(1);
+      motor2.step(1);
     }
   }
   else {
@@ -76,9 +83,10 @@ void forward() {
 void backward() {
   unsigned long startTime = millis();
   if (timeSpinning != NULL && leftWheelSpeed != NULL && rightWheelSpeed != NULL) {
+    setSpeed();
     while (millis() - startTime < timeSpinning) {
-      Serial.println("Hello, World. Backwarding.");
-      delay(1000);
+      motor1.step(-1);
+      motor2.step(-1);
     }
   }
   else {
@@ -95,4 +103,48 @@ void help() {
   Serial.println("2 - left wheel speed");
   Serial.println("3 - right wheel speed");
   Serial.println("Possible speed values: 1, 2, 3, 4, 5");
+}
+
+void setSpeed() {
+  if (leftWheelSpeed >= 1 && leftWheelSpeed <= 5) {
+    switch (leftWheelSpeed) {
+      case 1:
+        leftWheelSpeed = 500;
+        break;
+      case 2:
+        leftWheelSpeed = 600;
+        break;
+      case 3:
+        leftWheelSpeed = 700;
+        break;
+      case 4:
+        leftWheelSpeed = 800;
+        break;
+      case 5:
+        leftWheelSpeed = 1000;
+        break;
+    }
+    Serial.println("Current left speed: " + String(leftWheelSpeed) + " rpm");
+  }
+
+  if (rightWheelSpeed >= 1 && rightWheelSpeed <= 5) {
+    switch (rightWheelSpeed) {
+      case 1:
+        rightWheelSpeed = 500;
+        break;
+      case 2:
+        rightWheelSpeed = 600;
+        break;
+      case 3:
+        rightWheelSpeed = 700;
+        break;
+      case 4:
+        rightWheelSpeed = 800;
+        break;
+      case 5:
+        rightWheelSpeed = 1000;
+        break;
+    }
+    Serial.println("Current right speed: " + String(rightWheelSpeed) + " rpm");
+  }
 }
