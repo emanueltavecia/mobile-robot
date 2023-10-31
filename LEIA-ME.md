@@ -1,5 +1,5 @@
 # Interpretador de comandos para Robô Móvel
-- Repositório onde se encontra o código fonte e a documentação do funcionamento do interpretador de comandos de um robô móvel desenvolvido no IFSC Campus Araranguá.
+- **Repositório onde se encontra o código fonte e a documentação do funcionamento do interpretador de comandos de um robô móvel desenvolvido no IFSC Campus Araranguá.**
 
 ## Dados do projeto
 - Desenvolvido no Instituto Federal de Santa Catarina (IFSC) Campus Araranguá;
@@ -12,19 +12,37 @@
 
 - Este projeto utiliza a plataforma Arduino.
 
-- Você deve digitar um código no monitor serial iniciado por uma letra, que será a função a ser executada (f ou b), seguida de três números: o primeiro é o tempo em segundos que o robô irá se mover; o segundo é a velocidade da roda esquerda; e o terceiro é a velocidade da roda direita.
-  - Obs 1: As informações do código devem ser separadas por vírgula (,);
+### Configuração e Requisitos
+
+- Antes de usar o interpretador de comandos para o robô móvel, é importante configurar corretamente o ambiente e os requisitos do projeto. Siga as instruções abaixo:
+
+  - **Biblioteca Arduino Stepper**
+    - Os motores de passo são controlados usando a biblioteca Arduino "Stepper". Certifique-se de ter essa biblioteca instalada em seu ambiente de desenvolvimento. Se você ainda não a possui, você pode instalá-la a partir do Gerenciador de Bibliotecas do Arduino IDE.
+
+  - **Conexão dos Motores de Passo**
+    - Os motores de passo do robô estão conectados às seguintes portas do Arduino:
+      - Motor de Passo Esquerdo:
+        - Step → Porta 2 do Arduino
+        - Direction → Porta 3 do Arduino
+      - Motor de Passo Direito:
+        - Step → Porta 4 do Arduino
+        - Direction → Porta 5 do Arduino
+
+### Instruções de uso
+
+- Você deve digitar um código no **monitor serial** iniciado por uma letra, que será a função a ser executada (f ou b), seguida de três números: o primeiro é o tempo em segundos que o robô irá se mover; o segundo é a velocidade da roda esquerda; e o terceiro é a velocidade da roda direita.
+  - Obs 1: As informações do código devem ser **separadas por vírgula (,)**;
   - Obs 2: A letra da função é case-insensitive;
   - Obs 3: As velocidades tem valor mínimo de 1 e máximo de 5.
-    - Velocidade 1: 500 rpm;
-    - Velocidade 2: 600 rpm;
-    - Velocidade 3: 700 rpm;
-    - Velocidade 4: 800 rpm;
-    - Velocidade 5: 1000 rpm;
+    - Velocidade 1: 500 rpm
+    - Velocidade 2: 600 rpm
+    - Velocidade 3: 700 rpm
+    - Velocidade 4: 800 rpm
+    - Velocidade 5: 1000 rpm
 
 - A letra corresponde à função que será executada. Você tem as seguintes opções:
 
-  - f - para frente
+  - **f - para frente**
     - Exemplo:
       ```
       f,4,3,5
@@ -32,7 +50,7 @@
     - Nesse exemplo o robô se move para frente por 4 segundos. A roda esquerda gira na velocidade 3, e a roda direita gira na velocidade 5.
     - Obs: Usando velocidades diferentes para cada roda, o robô fará uma trajetória curva, mas se usar a mesma velocidade para as duas rodas, o robô se move sem fazer curvas.
 
-  - b - para trás
+  - **b - para trás**
     - Exemplo:
       ```
       b,7,2,4
@@ -40,9 +58,17 @@
     - Nesse exemplo o robô se move para trás por 7 segundos. A roda esquerda gira na velocidade 2, e a roda direita gira na velocidade 4.
     - Obs: Usando velocidades diferentes para cada roda, o robô fará uma trajetória curva, mas se usar a mesma velocidade para as duas rodas, o robô se move sem fazer curvas.
 
-  - h - ajuda
+  - **h - ajuda**
     - Exemplo:
       ```
       h
       ```
-    - Digitando "h" no monitor serial você recebe ajuda para usar os comandos.
+    - Enviando "h" no monitor serial você recebe ajuda para usar os comandos.
+
+## Licença
+
+- Este projeto é licenciado sob a [Licença MIT](LICENSE).
+
+- Copyright © 2023 [Emanuel Cardoso Tavecia](https://github.com/emanueltavecia), Bernardo Fernandes Spillere, e Gabriel Dutra dos Santos.
+
+- A Licença MIT é uma licença permissiva de código aberto que permite usar, modificar e distribuir livremente este software, desde que você inclua o aviso de direitos autorais original e o texto da Licença MIT em sua distribuição.
