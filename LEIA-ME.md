@@ -1,5 +1,5 @@
-# Robô Móvel
-- Repositório onde se encontra o código fonte e a documentação do funcionamento do Robô Móvel desenvolvido no IFSC Campus Araranguá.
+# Interpretador de comandos para Robô Móvel
+- Repositório onde se encontra o código fonte e a documentação do funcionamento do interpretador de comandos de um robô móvel desenvolvido no IFSC Campus Araranguá.
 
 ## Dados do projeto
 - Desenvolvido no Instituto Federal de Santa Catarina (IFSC) Campus Araranguá;
@@ -12,37 +12,37 @@
 
 - Este projeto utiliza a plataforma Arduino.
 
-- Você deve digitar um código no monitor serial iniciado por uma letra, que será a função a ser executada, seguida de um número, que será correspondente à rodas do robô ou seu ângulo de rotação. A letra da função é case-insensitive.
+- Você deve digitar um código no monitor serial iniciado por uma letra, que será a função a ser executada (f ou b), seguida de três números: o primeiro é o tempo em segundos que o robô irá se mover; o segundo é a velocidade da roda esquerda; e o terceiro é a velocidade da roda direita.
+  - Obs 1: As informações do código devem ser separadas por vírgula (,);
+  - Obs 2: A letra da função é case-insensitive;
+  - Obs 3: As velocidades tem valor mínimo de 1 e máximo de 5.
+    - Velocidade 1: 500 rpm;
+    - Velocidade 2: 600 rpm;
+    - Velocidade 3: 700 rpm;
+    - Velocidade 4: 800 rpm;
+    - Velocidade 5: 1000 rpm;
 
-- A letra corresponde à função que será executada pelo robô. Você tem as seguintes opções:
-
-  - v - velocidade;
-    - O número que compõe o código representa a velocidade do robô, sendo o valor mínimo de 1 e o valor máximo de 5. Exemplo:
-      ```
-      v3
-      ```
-    - Nesse exemplo o robô será configurado para girar na velocidade 3.
-    - Obs: com esse código apenas é definido a velocidade que o robô irá funcionar. Para fazer ele se mover você deve usar uma das seguintes opções.
+- A letra corresponde à função que será executada. Você tem as seguintes opções:
 
   - f - para frente
-    - O número que compõe o código representa a quantidade de voltas que o motor irá se mover para frente, exemplo:
+    - Exemplo:
       ```
-      f4
+      f,4,3,5
       ```
-    - Nesse exemplo o robô vai para frente. A rodas giram 4 voltas.
+    - Nesse exemplo o robô se move para frente por 4 segundos. A roda esquerda gira na velocidade 3, e a roda direita gira na velocidade 5.
+    - Obs: Usando velocidades diferentes para cada roda, o robô fará uma trajetória curva, mas se usar a mesma velocidade para as duas rodas, o robô se move sem fazer curvas.
 
   - b - para trás
-    - O número que compõe o código representa a quantidade de voltas que o motor irá se mover para trás, exemplo:
+    - Exemplo:
       ```
-      b7
+      b,7,2,4
       ```
-    - Nesse exemplo o robô vai para trás. A rodas giram 7 voltas.
+    - Nesse exemplo o robô se move para trás por 7 segundos. A roda esquerda gira na velocidade 2, e a roda direita gira na velocidade 4.
+    - Obs: Usando velocidades diferentes para cada roda, o robô fará uma trajetória curva, mas se usar a mesma velocidade para as duas rodas, o robô se move sem fazer curvas.
 
-  - Ainda não disponível:
-
-    - r - rotacionar
-      - O número que compõe o código representa o ângulo que o robô irá rotacionar, exemplo:
-        ```
-        r-50
-        ```
-      - Nesse exemplo o robô vai girar -50°, ou seja, 50° no sentido horário. Se o número for positivo, o robô irá girar para o sentido anti-horário.
+  - h - ajuda
+    - Exemplo:
+      ```
+      h
+      ```
+    - Digitando "h" no monitor serial você recebe ajuda para usar os comandos.
