@@ -19,20 +19,27 @@ void setup() {
   Serial.begin(9600);
 }
 
-void loop() {
+void loop() {  
+  prompt();
 
-  static unsigned long tempoAnterior = 0;
-  unsigned long tempoAtual = millis();
+  if (codeLetter == 'F') {
+    forward();
+  }
 
-  if (tempoAtual - tempoAnterior >= 1000) {
-    // A cada segundo, imprime o tempo decorrido em segundos
-    Serial.print("Tempo decorrido: ");
-    Serial.print(tempoAtual / 1000); // Converter para segundos
-    Serial.println(" segundos");
-    
-    tempoAnterior = tempoAtual;
+  else if (codeLetter == 'B') {
+    backward();
+  }
+
+  else if (codeLetter == 'H') {
+    help();
   }
   
+  else {
+    Serial.println("Invalid code. Type h to help.");
+  }
+}
+
+void prompt() {
   timeSpinning = NULL;
   leftWheelSpeed = NULL;
   rightWheelSpeed = NULL;
@@ -41,40 +48,51 @@ void loop() {
   
   while (Serial.available() == 0) {}
   
-  userInput = Serial.readStringUntil('\n');  // Read the input until a newline character
+  userInput = Serial.readStringUntil('\n');
 
-  // Convert the command letter to uppercase
   codeLetter = toupper(userInput.charAt(0));
 
-  // Parse the numbers using strtok
   char* token = strtok((char*)userInput.c_str() + 2, ",");
-  timeSpinning = atoi(token);
+  timeSpinning = atoi(token) * 1000;
   token = strtok(NULL, ",");
   leftWheelSpeed = atoi(token);
   token = strtok(NULL, ",");
   rightWheelSpeed = atoi(token);
+}
 
-  if (codeLetter == 'F') {
-    if (timeSpinning != NULL && leftWheelSpeed != NULL && rightWheelSpeed != NULL) {
-      
-    } else {
-      Serial.println("Invalid code. Type h to help.");
+void forward() {
+  unsigned long startTime = millis();
+  if (timeSpinning != NULL && leftWheelSpeed != NULL && rightWheelSpeed != NULL) {
+    while (millis() - startTime < timeSpinning) {
+      Serial.println("Hello, World. Forwarding.");
+      delay(1000);
     }
   }
-  else if (codeLetter == 'B') {
-    
-  }
-  else if (codeLetter == 'H') {
-    Serial.println("HELP");
-    Serial.println("F - forward");
-    Serial.println("B - Backward");
-    Serial.println("Template: F,1,2,3");
-    Serial.println("1 - 1 second");
-    Serial.println("2 - left wheel speed");
-    Serial.println("3 - right wheel speed");
-    Serial.println("Possible speed values: 1, 2, 3, 4, 5");
-  } else {
+  else {
     Serial.println("Invalid code. Type h to help.");
   }
-  
+}
+
+void backward() {
+  unsigned long startTime = millis();
+  if (timeSpinning != NULL && leftWheelSpeed != NULL && rightWheelSpeed != NULL) {
+    while (millis() - startTime < timeSpinning) {
+      Serial.println("Hello, World. Backwarding.");
+      delay(1000);
+    }
+  }
+  else {
+    Serial.println("Invalid code. Type h to help.");
+  }
+}
+
+void help() {
+  Serial.println("HELP");
+  Serial.println("F - forward");
+  Serial.println("B - Backward");
+  Serial.println("Template: F,1,2,3");
+  Serial.println("1 - 1 second");
+  Serial.println("2 - left wheel speed");
+  Serial.println("3 - right wheel speed");
+  Serial.println("Possible speed values: 1, 2, 3, 4, 5");
 }
