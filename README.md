@@ -2,6 +2,15 @@
 
 **Repository containing the source code and documentation for the operation of the command interpreter of a mobile robot developed by students at IFSC Campus Araranguá.**
 
+## Table of Contents
+
+- [Project Details](#project-details)
+- [Documentation](#documentation)
+  - [Configuration and Requirements](#configuration-and-requirements)
+  - [Instructions for use](#instructions-for-use)
+    - [Summary](#summary)
+- [License](#license)
+
 ## Project Details
 - Developed at the Federal Institute of Santa Catarina (IFSC) Campus Araranguá
 - Integrated Technical Course in Electromechanics
@@ -29,11 +38,11 @@ Before using the command interpreter for the mobile robot, it is important to co
       - Step → Arduino Port 4
       - Direction → Arduino Port 5
 
-- **Upload the code [```interpreter.ino```](interpreter.ino) to your Arduino**
+- **Upload the code [`interpreter.ino`](interpreter.ino) to your Arduino**
 
 ### Instructions for use
 
-- You must enter a code on the **serial monitor** starting with a letter, which will be the function to be executed (F, B, L or R), followed by two numbers: the first is the time in seconds that the robot will move; and the second is the speed of the wheels.
+- You must enter a code on the **serial monitor** starting with a letter, which will be the function to be executed (F, B, L or R), followed by two numbers: the first is the duration in seconds that the robot will move; and the second is the speed of the wheels.
   - Note 1: Code information must be **separated by a comma (,)**
   - Note 2: The function letter is case-insensitive
   - Note 3: Speeds have a minimum value of 1 and a maximum of 5
@@ -79,6 +88,15 @@ Before using the command interpreter for the mobile robot, it is important to co
       H
       ```
     - Sending "h" on the serial monitor will help you use the commands.
+
+#### Summary
+
+| Function | Duration | Speed | Code |
+| :---: | :---: | :---: | :---: |
+| F | 4 seconds | 5 | `F,4,5` |
+| B | 7 seconds | 4 | `B,7,4` |
+| L | 5 seconds | 3 | `L,4,3` |
+| R | 2 seconds | 2 | `R,2,2` |
 
 ## License
 

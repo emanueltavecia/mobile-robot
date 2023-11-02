@@ -2,6 +2,15 @@
 
 **Repositório onde se encontra o código fonte e a documentação do funcionamento do interpretador de comandos de um robô móvel desenvolvido por estudantes do IFSC Campus Araranguá.**
 
+## Índice
+
+- [Dados do projeto](#dados-do-projeto)
+- [Documentação](#documentação)
+  - [Configuração e Requisitos](#configuração-e-requisitos)
+  - [Instruções de uso](#instruções-de-uso)
+    - [Resumo](#resumo)
+- [Licença](#licença)
+
 ## Dados do projeto
 - Desenvolvido no Instituto Federal de Santa Catarina (IFSC) Campus Araranguá
 - Curso Técnico Integrado em Eletromecânica
@@ -29,11 +38,11 @@ Antes de usar o interpretador de comandos para o robô móvel, é importante con
       - Step → Porta 4 do Arduino
       - Direction → Porta 5 do Arduino
 
-- **Fazer o upload do código [```interpreter.ino```](interpreter.ino) para o seu Arduino**
+- **Fazer o upload do código [`interpreter.ino`](interpreter.ino) para o seu Arduino**
 
 ### Instruções de uso
 
-- Você deve digitar um código no **monitor serial** iniciado por uma letra, que será a função a ser executada (F, B, L ou R), seguida de dois números: o primeiro é o tempo em segundos que o robô irá se mover; e o segundo é a velocidade das rodas.
+- Você deve digitar um código no **monitor serial** iniciado por uma letra, que será a função a ser executada (F, B, L ou R), seguida de dois números: o primeiro é a duração em segundos que o robô irá se mover; e o segundo é a velocidade das rodas.
   - Obs 1: As informações do código devem ser **separadas por vírgula (,)**
   - Obs 2: A letra da função é case-insensitive
   - Obs 3: A velocidade tem valor mínimo de 1 e máximo de 5
@@ -79,6 +88,15 @@ Antes de usar o interpretador de comandos para o robô móvel, é importante con
       H
       ```
     - Enviando "h" no monitor serial você recebe ajuda para usar os comandos.
+
+#### Resumo
+
+| Função | Duração | Veloc. | Código |
+| :---: | :---: | :---: | :---: |
+| F | 4 segundos | 5 | `F,4,5` |
+| B | 7 segundos | 4 | `B,7,4` |
+| L | 5 segundos | 3 | `L,4,3` |
+| R | 2 segundos | 2 | `R,2,2` |
 
 ## Licença
 
