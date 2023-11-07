@@ -37,6 +37,8 @@ Before using the command interpreter for the mobile robot, it is important to co
     - Right Step Motor:
       - Step → Arduino Port 4
       - Direction → Arduino Port 5
+  
+  ![Schematic representation of connections.](.github/schematic-representation.png "Schematic representation of connections")
 
 - **Upload the code [`interpreter.ino`](interpreter.ino) to your Arduino**
 

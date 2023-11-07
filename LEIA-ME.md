@@ -37,6 +37,8 @@ Antes de usar o interpretador de comandos para o robô móvel, é importante con
     - Motor de Passo Direito:
       - Step → Porta 4 do Arduino
       - Direction → Porta 5 do Arduino
+  
+  ![Representação esquemática das ligações.](.github/schematic-representation.png "Representação esquemática das ligações")
 
 - **Fazer o upload do código [`interpreter.ino`](interpreter.ino) para o seu Arduino**
 
