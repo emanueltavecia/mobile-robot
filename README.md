@@ -63,7 +63,7 @@ Before using the command interpreter for the mobile robot, it is important to co
       ```
     - In this example the robot moves forward for 4 seconds. The wheels rotate at speed 5.
 
-  - **B - backward**
+  - **B - backwards**
     - Example:
       ```
       B,7,4
