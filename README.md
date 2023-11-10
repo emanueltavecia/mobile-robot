@@ -97,7 +97,7 @@ Before using the command interpreter for the mobile robot, it is important to co
 | :---: | :---: | :---: | :---: |
 | F | 4 seconds | 5 | `F,4,5` |
 | B | 7 seconds | 4 | `B,7,4` |
-| L | 5 seconds | 3 | `L,4,3` |
+| L | 5 seconds | 3 | `L,5,3` |
 | R | 2 seconds | 2 | `R,2,2` |
 
 ## License

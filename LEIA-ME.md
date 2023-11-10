@@ -97,7 +97,7 @@ Antes de usar o interpretador de comandos para o robô móvel, é importante con
 | :---: | :---: | :---: | :---: |
 | F | 4 segundos | 5 | `F,4,5` |
 | B | 7 segundos | 4 | `B,7,4` |
-| L | 5 segundos | 3 | `L,4,3` |
+| L | 5 segundos | 3 | `L,5,3` |
 | R | 2 segundos | 2 | `R,2,2` |
 
 ## Licença
